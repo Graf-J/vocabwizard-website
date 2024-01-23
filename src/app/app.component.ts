@@ -18,7 +18,6 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        console.log(this.isLoginOrRegisterRoute());
         this.showHeader = !this.isLoginOrRegisterRoute();
       });
   }

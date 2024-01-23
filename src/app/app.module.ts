@@ -8,6 +8,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthInterceptor } from './services/interceptors/auth.interceptor';
 
+import { HeaderComponent } from './components/header/header.component';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,6 +18,7 @@ import { AuthInterceptor } from './services/interceptors/auth.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     NgbModule,
+    HeaderComponent,
   ],
   providers: [
     {

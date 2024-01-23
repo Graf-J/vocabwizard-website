@@ -1,0 +1,10 @@
+<header class="main-header" *ngIf="showHeader">
+    <div (click)="navigateHome()">
+        <img src="../assets/logo.png">
+        <h1>VocabWizard</h1>
+    </div>
+
+    <button mat-raised-button color="warn" class="m-2" (click)="logout()">
+        Logout
+    </button>
+</header>

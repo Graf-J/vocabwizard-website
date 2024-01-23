@@ -1,8 +1,5 @@
-<header *ngIf="showHeader">
-    <h1>Hello World</h1>
-</header>
+<app-header [showHeader]="showHeader"/>
 
-<div class="main-content-wrapper">
+<div [ngStyle]="{'height': showHeader ? 'calc(100vh - 50px)' : '100vh'}" class="main-content-wrapper">
     <router-outlet></router-outlet>
 </div>
-

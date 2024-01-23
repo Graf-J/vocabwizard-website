@@ -1,0 +1,27 @@
+.main-header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f3f3f3;
+  }
+
+.main-header div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-header div:hover {
+    cursor: pointer;
+}
+
+.main-header img {
+    margin-right: 10px;
+    height: 50px;
+    width: 50px;
+}
+
+.main-header h1 {
+    margin: 0;
+}

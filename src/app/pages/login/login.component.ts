@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,13 +9,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -26,11 +27,10 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   hide = true;
   isLoading: boolean = false;
-  loginError: boolean = false;
-  loginErrorMessage: string = '';
+  generalErrorMessage: string = '';
 
   loginForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -42,10 +42,22 @@ export class LoginComponent {
     private readonly authService: AuthService,
   ) {}
 
+  ngOnInit(): void {
+    this.loginForm.valueChanges.subscribe(() => {
+      this.generalErrorMessage = '';
+      if (this.loginForm.get('name')?.errors?.['incorrect']) {
+        this.loginForm.controls['name'].setErrors(null);
+      }
+      if (this.loginForm.get('password')?.errors?.['incorrect']) {
+        this.loginForm.controls['password'].setErrors(null);
+      }
+    });
+  }
+
   onSubmit(): void {
     if (this.loginForm.valid) {
+      console.log('Request');
       this.isLoading = true;
-      this.loginErrorMessage = '';
 
       this.authService
         .login(this.loginForm.value.name!, this.loginForm.value.password!)
@@ -54,11 +66,17 @@ export class LoginComponent {
           this.router.navigate(['']);
         })
         .catch((error: HttpErrorResponse) => {
-          this.loginErrorMessage = error.error.message;
+          this.setGeneralError(error);
         })
         .finally(() => {
           this.isLoading = false;
         });
     }
+  }
+
+  private setGeneralError(error: HttpErrorResponse) {
+    this.generalErrorMessage = error.error.message;
+    this.loginForm.controls['name'].setErrors({ incorrect: true });
+    this.loginForm.controls['password'].setErrors({ incorrect: true });
   }
 }

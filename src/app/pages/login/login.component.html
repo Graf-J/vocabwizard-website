@@ -1,19 +1,29 @@
 <div class="container-fluid h-100 d-flex justify-content-center align-items-center">
     <form class="bg-light col-8 col-sm-8 col-lg-6 col-xl-4 d-flex flex-column p-3 rounded text-center" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <h1 style="font-size: xx-large;" class="mb-3">Login</h1>
-        <mat-form-field appearance="fill">
+
+        <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Name</mat-label>
             <input formControlName="name" matInput>
+            <mat-error *ngIf="loginForm.get('name')?.errors?.['required']">Required</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+
+        <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Password</mat-label>
             <input [type]="hide ? 'password' : 'text'" autocomplete="on" formControlName="password" matInput>
             <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">Required</mat-error>
         </mat-form-field>
-        <p *ngIf="loginErrorMessage.length > 0" class="text-danger">{{ loginErrorMessage }}</p>
+        
+        <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>
         <button [disabled]="isLoading" mat-raised-button color="primary">Submit</button>
         <mat-progress-bar *ngIf="isLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
+
+        <div class="d-flex mt-4">
+            <span style="margin-right: 5px">Don't have an account?</span>
+            <a [routerLink]="['/register']">Register</a>
+        </div>
     </form>
 </div>

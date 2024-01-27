@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { AuthResponse } from '../models/response/auth-response.model';
+import { RegisterRequest } from '../models/request/register-request.model';
+import { LoginRequest } from '../models/request/login-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -33,11 +36,29 @@ export class AuthService {
     return !!token && !this.isTokenExpired(token);
   }
 
-  async login(name: string, password: string): Promise<any> {
-    const payload = { name, password };
+  async login(name: string, password: string): Promise<AuthResponse> {
+    const payload: LoginRequest = { name, password };
 
     return await firstValueFrom(
-      this.http.post(`${environment.SERVER_URL}/auth/login`, payload),
+      this.http.post<AuthResponse>(
+        `${environment.SERVER_URL}/auth/login`,
+        payload,
+      ),
+    );
+  }
+
+  async register(
+    name: string,
+    password: string,
+    passwordConfirmation: string,
+  ): Promise<AuthResponse> {
+    const payload: RegisterRequest = { name, password, passwordConfirmation };
+
+    return await firstValueFrom(
+      this.http.post<AuthResponse>(
+        `${environment.SERVER_URL}/auth/register`,
+        payload,
+      ),
     );
   }
 }

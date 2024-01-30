@@ -18,7 +18,7 @@
         </mat-form-field>
         
         <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>
-        <button [disabled]="isLoading" mat-raised-button color="primary">Submit</button>
+        <button [disabled]="isLoading || loginForm.invalid" mat-raised-button color="primary">Submit</button>
         <mat-progress-bar *ngIf="isLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
 
         <div class="d-flex mt-4">

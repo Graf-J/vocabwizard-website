@@ -1,0 +1,22 @@
+.scrollable-container::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #9b9b9b;
+    border-radius: 4px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.deck-text {
+    color: white; 
+    font-size: 3em; 
+    margin-top: 15px
+}
+
+.deck-subtext {
+    color: rgb(167, 167, 167);
+}

@@ -1,0 +1,13 @@
+.deck-card {
+    background: rgb(70, 70, 70); 
+    color: rgb(223, 223, 223);
+    border-radius: 5px;
+    border-left: 8px solid #3F51B5;
+    transition: .3s
+}
+  
+.deck-card:hover:hover {
+    border-left: 15px solid #3F51B5;
+    background: rgb(59, 59, 59);
+    cursor: pointer;
+}

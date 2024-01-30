@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="deck-card" [routerLink]="['/learn', deck.id]">
+            <div class="d-flex flex-row justify-content-between align-items-center p-2">
+                <div class="d-flex flex-row flex-grow-1">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <span>Add Card</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Copy Id</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Statistics</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Update Deck</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Reverse Deck</span>
+                        </button>
+                        <button mat-menu-item>
+                            <span>Delete Deck</span>
+                        </button>
+                    </mat-menu>
+                    
+                    <h1 class="m-2"><b>{{ deck.name }}</b></h1>
+                </div>
+                <div class="d-flex flex-row">
+                    <h1 matTooltip="The amount of cards which have already been learned and need to be repeated today" matTooltipPosition="above" class="m-2" style="color: #536DFE">{{ deck.oldCardCount }}</h1>
+                    <h1 matTooltip="The amount of new cards to learn which are determined by the learning rate of the deck" matTooltipPosition="above" class="m-2" class="m-2" style="color: #4CAF50">{{ deck.newCardCount }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

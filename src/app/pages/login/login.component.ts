@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,10 +28,12 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   hide = true;
   isLoading: boolean = false;
   generalErrorMessage: string = '';
+
+  loginFormSubscription: Subscription | undefined;
 
   loginForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -43,7 +46,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginForm.valueChanges.subscribe(() => {
+    this.loginFormSubscription = this.loginForm.valueChanges.subscribe(() => {
       this.generalErrorMessage = '';
       if (this.loginForm.get('name')?.errors?.['incorrect']) {
         this.loginForm.controls['name'].setErrors(null);
@@ -54,9 +57,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.loginFormSubscription) {
+      this.loginFormSubscription.unsubscribe();
+    }
+  }
+
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log('Request');
       this.isLoading = true;
 
       this.authService

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -16,6 +15,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { passwordMatchValidator } from 'src/app/services/validators/password-match.validator';
+import {
+  getNameErrorMessage,
+  getPasswordErrorMessage,
+  getPasswordConfirmationErrorMessage,
+} from 'src/app/utils/error-parser';
 
 @Component({
   selector: 'app-register',
@@ -53,21 +58,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     ]),
     passwordConfirmation: new FormControl('', [
       Validators.required,
-      this.passwordMatchValidator,
+      passwordMatchValidator,
     ]),
   });
-
-  passwordMatchValidator(
-    control: AbstractControl,
-  ): { [key: string]: boolean } | null {
-    const password = control.parent?.get('password')?.value;
-    const passwordConfirmation = control.value;
-
-    // Check if the passwords match
-    return password === passwordConfirmation
-      ? null
-      : { passwordMismatch: true };
-  }
 
   constructor(
     private readonly router: Router,
@@ -75,20 +68,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // Handle reset of Errors in General Error
     this.registerFormSubscription = this.registerForm.valueChanges.subscribe(
       () => {
-        this.generalErrorMessage = '';
-        if (this.registerForm.get('name')?.errors?.['incorrect']) {
-          this.registerForm.controls['name'].setErrors(null);
-        }
-        if (this.registerForm.get('password')?.errors?.['incorrect']) {
-          this.registerForm.controls['password'].setErrors(null);
-        }
-        if (
-          this.registerForm.get('passwordConfirmation')?.errors?.['incorrect']
-        ) {
-          this.registerForm.controls['passwordConfirmation'].setErrors(null);
-        }
+        this.resetGeneralError();
       },
     );
 
@@ -134,45 +117,19 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   getNameError() {
     const errorKey = Object.keys(this.registerForm.get('name')!.errors!)[0];
-
-    switch (errorKey) {
-      case 'required':
-        return 'Required';
-      case 'minlength':
-        return 'At least 4 characters';
-      default:
-        return 'Invalid';
-    }
+    return getNameErrorMessage(errorKey);
   }
 
   getPasswordError() {
     const errorKey = Object.keys(this.registerForm.get('password')!.errors!)[0];
-
-    switch (errorKey) {
-      case 'required':
-        return 'Required';
-      case 'minlength':
-        return 'At least 6 characters';
-      case 'pattern':
-        return 'At least 1 number and 1 special character';
-      default:
-        return 'Invalid';
-    }
+    return getPasswordErrorMessage(errorKey);
   }
 
   getPasswordConfirmationError() {
     const errorKey = Object.keys(
       this.registerForm.get('passwordConfirmation')!.errors!,
     )[0];
-
-    switch (errorKey) {
-      case 'required':
-        return 'Required';
-      case 'passwordMismatch':
-        return 'Does not match Password';
-      default:
-        return 'Invalid';
-    }
+    return getPasswordConfirmationErrorMessage(errorKey);
   }
 
   private setGeneralError(error: HttpErrorResponse) {
@@ -186,5 +143,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registerForm.controls['passwordConfirmation'].setErrors({
       incorrect: true,
     });
+  }
+
+  private resetGeneralError() {
+    this.generalErrorMessage = '';
+    if (this.registerForm.get('name')?.errors?.['incorrect']) {
+      this.registerForm.controls['name'].setErrors(null);
+    }
+    if (this.registerForm.get('password')?.errors?.['incorrect']) {
+      this.registerForm.controls['password'].setErrors(null);
+    }
+    if (this.registerForm.get('passwordConfirmation')?.errors?.['incorrect']) {
+      this.registerForm.controls['passwordConfirmation'].setErrors(null);
+    }
   }
 }

@@ -1,0 +1,52 @@
+<div class="container-fluid h-100 d-flex justify-content-center align-items-center">
+    <form class="bg-light col-8 col-sm-8 col-lg-6 col-xl-4 d-flex flex-column p-3 rounded text-center" [formGroup]="createDeckForm" (ngSubmit)="onSubmit()">
+        <h1 style="font-size: xx-large;" class="mb-3">Create Deck</h1>
+
+        <mat-form-field class="mb-2" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput>
+            <mat-error *ngIf="createDeckForm.get('name')?.errors">{{ getNameError() }}</mat-error>
+        </mat-form-field>
+
+        <div class="w-100 d-flex flex-column align-items-start">
+            <h3 style="color: rgb(128, 128, 128)">Learning Rate:</h3>
+            <mat-slider class="w-100" min="1" max="50" step="1" showTickMarks discrete>
+                <input matSliderThumb formControlName="learningRate">
+            </mat-slider>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Source Language</mat-label>
+            <mat-select formControlName="sourceLanguage">
+                <mat-select-trigger *ngIf="createDeckForm.get('sourceLanguage')?.value">
+                    <img [src]="'../../../assets/' + createDeckForm.get('sourceLanguage')?.value + '.png'" class="language-icon">
+                    {{ getLanguageString(createDeckForm.get('sourceLanguage')?.value) }}
+                </mat-select-trigger>
+                <mat-option *ngFor="let language of languages" [value]="language.value">
+                    <img [src]="'../../../assets/' + language.value + '.png'" class="language-icon">
+                    {{language.viewValue}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="createDeckForm.get('sourceLanguage')?.errors">{{ getSourceLanguageError() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Target Language</mat-label>
+            <mat-select formControlName="targetLanguage">
+                <mat-select-trigger *ngIf="createDeckForm.get('targetLanguage')?.value">
+                    <img [src]="'../../../assets/' + createDeckForm.get('targetLanguage')?.value + '.png'" class="language-icon">
+                    {{ getLanguageString(createDeckForm.get('targetLanguage')?.value) }}
+                </mat-select-trigger>
+                <mat-option *ngFor="let language of languages" [value]="language.value">
+                    <img [src]="'../../../assets/' + language.value + '.png'" class="language-icon">
+                    {{language.viewValue}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="createDeckForm.get('targetLanguage')?.errors">{{ getTargetLanguageError() }}</mat-error>
+        </mat-form-field>
+        
+        <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>
+        <button [disabled]="isLoading || createDeckForm.invalid" mat-raised-button color="primary">Submit</button>
+        <mat-progress-bar *ngIf="isLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
+    </form>
+</div>

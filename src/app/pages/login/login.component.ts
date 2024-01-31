@@ -47,13 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loginFormSubscription = this.loginForm.valueChanges.subscribe(() => {
-      this.generalErrorMessage = '';
-      if (this.loginForm.get('name')?.errors?.['incorrect']) {
-        this.loginForm.controls['name'].setErrors(null);
-      }
-      if (this.loginForm.get('password')?.errors?.['incorrect']) {
-        this.loginForm.controls['password'].setErrors(null);
-      }
+      this.resetGeneralError();
     });
   }
 
@@ -86,5 +80,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.generalErrorMessage = error.error.message;
     this.loginForm.controls['name'].setErrors({ incorrect: true });
     this.loginForm.controls['password'].setErrors({ incorrect: true });
+  }
+
+  private resetGeneralError() {
+    this.generalErrorMessage = '';
+    if (this.loginForm.get('name')?.errors?.['incorrect']) {
+      this.loginForm.controls['name'].setErrors(null);
+    }
+    if (this.loginForm.get('password')?.errors?.['incorrect']) {
+      this.loginForm.controls['password'].setErrors(null);
+    }
   }
 }

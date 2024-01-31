@@ -6,6 +6,7 @@ import { authPreventionGuard } from './services/guards/auth-prevention.guard';
 import { DeckOverviewComponent } from './pages/deck-overview/deck-overview.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LearnComponent } from './pages/learn/learn.component';
+import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: '',
     component: DeckOverviewComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'create-deck',
+    component: CreateDeckComponent,
     canActivate: [authGuard],
   },
   {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { DeckService } from 'src/app/services/deck.service';
 import { OverallDeckResponse } from 'src/app/models/response/overall-deck-response.model';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -12,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     MatProgressSpinnerModule,
     DeckCardComponent,
     MatIconModule,

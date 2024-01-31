@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { Subject, firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { OverallDeckResponse } from '../models/response/overall-deck-response.model';
 import { Language } from '../models/language.enum';
@@ -10,7 +10,14 @@ import { CreateDeckRequest } from '../models/request/create-deck-request.model';
   providedIn: 'root',
 })
 export class DeckService {
+  private reloadDecksSubject = new Subject<void>();
+  reloadDecks$ = this.reloadDecksSubject.asObservable();
+
   constructor(private readonly http: HttpClient) {}
+
+  triggerDecksReload() {
+    this.reloadDecksSubject.next();
+  }
 
   async getDecks(): Promise<OverallDeckResponse[]> {
     return await firstValueFrom(
@@ -33,6 +40,12 @@ export class DeckService {
 
     return await firstValueFrom(
       this.http.post(`${environment.SERVER_URL}/decks`, payload),
+    );
+  }
+
+  async deleteDeck(id: string) {
+    return await firstValueFrom(
+      this.http.delete(`${environment.SERVER_URL}/decks/${id}`),
     );
   }
 }

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Deck</h1>
+<div mat-dialog-content>
+  Are you sure you want to delete "{{ data.deck.name }}"?
+</div>
+<div mat-dialog-actions>
+  <button [disabled]="isLoading" mat-button mat-dialog-close>Cancel</button>
+  <button [disabled]="isLoading" mat-button color="warn" cdkFocusInitial (click)="onDelete()">Delete</button>
+</div>

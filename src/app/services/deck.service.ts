@@ -43,6 +43,12 @@ export class DeckService {
     );
   }
 
+  async swap(id: string) {
+    return await firstValueFrom(
+      this.http.patch(`${environment.SERVER_URL}/decks/${id}/swap`, {}),
+    );
+  }
+
   async import(id: string) {
     return await firstValueFrom(
       this.http.post(`${environment.SERVER_URL}/decks/import`, { deckId: id }),

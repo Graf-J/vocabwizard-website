@@ -53,3 +53,14 @@ export function getLanguageErrorMessage(errorKey: string): string {
       return 'Invalid';
   }
 }
+
+export function getIdErrorMessage(errorKey: string): string {
+  switch (errorKey) {
+    case 'required':
+      return 'Required';
+    case 'incorrect':
+      return '';
+    default:
+      return 'Invalid';
+  }
+}

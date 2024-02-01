@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { DeckService } from 'src/app/services/deck.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { getIdErrorMessage } from 'src/app/utils/error-parser';
 
 @Component({
   selector: 'app-import-deck',
@@ -73,6 +74,11 @@ export class ImportDeckComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         });
     }
+  }
+
+  getIdError() {
+    const errorKey = Object.keys(this.importForm.get('id')!.errors!)[0];
+    return getIdErrorMessage(errorKey);
   }
 
   private setGeneralError(error: HttpErrorResponse) {

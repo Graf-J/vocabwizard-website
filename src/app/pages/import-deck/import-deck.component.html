@@ -5,7 +5,7 @@
         <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Deck ID</mat-label>
             <input formControlName="id" matInput>
-            <mat-error *ngIf="importForm.get('id')?.errors?.['required']">Required</mat-error>
+            <mat-error *ngIf="importForm.get('id')?.errors">{{ getIdError() }}</mat-error>
         </mat-form-field>
         
         <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>

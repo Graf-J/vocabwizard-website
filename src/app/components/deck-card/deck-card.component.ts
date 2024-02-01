@@ -13,6 +13,8 @@ import { DeleteDeckDialogComponent } from '../delete-deck-dialog/delete-deck-dia
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../snackbar/snackbar.component';
+import { DeckService } from 'src/app/services/deck.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-deck-card',
@@ -38,6 +40,7 @@ export class DeckCardComponent {
   constructor(
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
+    private readonly deckService: DeckService,
   ) {}
 
   onCopyDeckId() {
@@ -45,6 +48,20 @@ export class DeckCardComponent {
       duration: 3 * 1000,
       data: { message: 'Copied to Clipboard' },
     });
+  }
+
+  reverseDeck() {
+    this.deckService
+      .swap(this.deck.id)
+      .then(() => {
+        this.deckService.triggerDecksReload();
+      })
+      .catch((error: HttpErrorResponse) => {
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 5 * 1000,
+          data: { message: error.error.message },
+        });
+      });
   }
 
   openDeleteDeckDialog() {

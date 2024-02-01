@@ -43,6 +43,12 @@ export class DeckService {
     );
   }
 
+  async import(id: string) {
+    return await firstValueFrom(
+      this.http.post(`${environment.SERVER_URL}/decks/import`, { deckId: id }),
+    );
+  }
+
   async deleteDeck(id: string) {
     return await firstValueFrom(
       this.http.delete(`${environment.SERVER_URL}/decks/${id}`),

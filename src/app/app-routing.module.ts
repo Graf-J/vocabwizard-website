@@ -7,6 +7,7 @@ import { DeckOverviewComponent } from './pages/deck-overview/deck-overview.compo
 import { RegisterComponent } from './pages/register/register.component';
 import { LearnComponent } from './pages/learn/learn.component';
 import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
+import { ImportDeckComponent } from './pages/import-deck/import-deck.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'create-deck',
     component: CreateDeckComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'import-deck',
+    component: ImportDeckComponent,
     canActivate: [authGuard],
   },
   {

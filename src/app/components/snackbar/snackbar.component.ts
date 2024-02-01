@@ -14,9 +14,9 @@ import {
   templateUrl: './snackbar.component.html',
   styleUrls: ['./snackbar.component.css'],
 })
-export class ErrorSnackbarComponent {
+export class SnackbarComponent {
   constructor(
-    public readonly snackBarRef: MatSnackBarRef<ErrorSnackbarComponent>,
+    public readonly snackBarRef: MatSnackBarRef<SnackbarComponent>,
     @Inject(MAT_SNACK_BAR_DATA) public readonly data: { message: string },
   ) {}
 }

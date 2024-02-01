@@ -10,7 +10,7 @@
                         <button mat-menu-item>
                             <span>Add Card</span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item [cdkCopyToClipboard]="deck.id" (click)="onCopyDeckId()">
                             <span>Copy Id</span>
                         </button>
                         <button mat-menu-item>

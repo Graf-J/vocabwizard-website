@@ -6,7 +6,7 @@ import { DeckService } from 'src/app/services/deck.service';
 import { OverallDeckResponse } from 'src/app/models/response/overall-deck-response.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ErrorSnackbarComponent } from '../snackbar/snackbar.component';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -36,7 +36,7 @@ export class DeleteDeckDialogComponent {
         this.dialogRef.close();
       })
       .catch((error: HttpErrorResponse) => {
-        this.snackBar.openFromComponent(ErrorSnackbarComponent, {
+        this.snackBar.openFromComponent(SnackbarComponent, {
           duration: 5 * 1000,
           data: { message: error.error.message },
         });

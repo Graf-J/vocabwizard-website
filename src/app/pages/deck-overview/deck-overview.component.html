@@ -7,7 +7,7 @@
     <h1 *ngIf="decks!.length === 0" class="deck-text">- You have no Decks -</h1>
     <h1 *ngIf="decks!.length === 0" class="deck-subtext">Create your first Deck to start</h1>
 
-    <div class="w-100  scrollable-container overflow-auto">
+    <div class="w-100 scrollable-container overflow-auto">
         <div *ngFor="let deck of decks" class="m-2">
             <app-deck-card [deck]="deck" />
         </div>

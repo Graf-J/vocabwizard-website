@@ -8,7 +8,7 @@ describe('DeleteDeckDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DeleteDeckDialogComponent]
+      imports: [DeleteDeckDialogComponent],
     });
     fixture = TestBed.createComponent(DeleteDeckDialogComponent);
     component = fixture.componentInstance;

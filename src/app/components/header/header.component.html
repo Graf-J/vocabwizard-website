@@ -1,10 +1,15 @@
 <header class="main-header" *ngIf="showHeader">
     <div (click)="navigateHome()">
         <img src="../assets/logo.png">
-        <h1>VocabWizard</h1>
+        <h1 class="d-none d-sm-block">VocabWizard</h1>
     </div>
 
-    <button mat-raised-button color="warn" class="m-2" (click)="logout()">
-        Logout
-    </button>
+    <div>
+        <button *ngIf="isAdmin()" mat-raised-button color="primary" class="m-2" (click)="onManageUsersClick()">
+            Manage Users
+        </button>
+        <button mat-raised-button color="warn" class="m-2" (click)="logout()">
+            Logout
+        </button>
+    </div>
 </header>

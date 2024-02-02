@@ -23,8 +23,16 @@ export class HeaderComponent {
     this.router.navigate(['']);
   }
 
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
+
   logout() {
     this.authService.removeToken();
     this.router.navigate(['login']);
+  }
+
+  onManageUsersClick() {
+    this.router.navigate(['user']);
   }
 }

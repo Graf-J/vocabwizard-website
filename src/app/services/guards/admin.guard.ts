@@ -1,17 +1,16 @@
-import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { inject } from '@angular/core';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const authGuard: CanActivateFn = (_route, _state) => {
+export const adminGuard: CanActivateFn = (_route, _state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  console.log('Here');
-  if (authService.isAuthenticated()) {
+  if (authService.isAdmin()) {
     return true;
   } else {
-    router.navigate(['/login']);
+    router.navigate(['']);
     return false;
   }
 };

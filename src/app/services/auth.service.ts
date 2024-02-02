@@ -31,6 +31,20 @@ export class AuthService {
     return expiry * 1000 < Date.now();
   }
 
+  getUserRole(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      return decodedToken.role || null;
+    }
+    return null;
+  }
+
+  isAdmin(): boolean {
+    const userRole = this.getUserRole();
+    return userRole === 'administrator';
+  }
+
   isAuthenticated(): boolean {
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);

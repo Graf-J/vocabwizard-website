@@ -8,6 +8,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LearnComponent } from './pages/learn/learn.component';
 import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
 import { ImportDeckComponent } from './pages/import-deck/import-deck.component';
+import { UserComponent } from './pages/user/user.component';
+import { adminGuard } from './services/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -39,6 +41,11 @@ const routes: Routes = [
     path: 'learn/:deckId',
     component: LearnComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [adminGuard],
   },
 ];
 

@@ -1,0 +1,50 @@
+.card-wrapper {
+    width: 100%;
+    height: 100%;
+    perspective: 2600px;
+}
+  
+.card {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card .front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    background-color: #3a3a3a;
+    color: white;
+    border-radius: 6px;
+    overflow-y: auto;
+}
+
+.card .back {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    background-color: #3a3a3a;
+    color: white;
+    border-radius: 6px;
+    overflow-y: auto;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+  
+.flipped {
+    transform: rotateY(180deg);
+}

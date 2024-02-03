@@ -1,0 +1,10 @@
+<div class="card-wrapper">
+    <div [ngClass]="toggleProperty ? 'flipped' : ''" class="card">
+      <div class="front" (click)="onFrontClick()">
+        <ng-content select="flip-card-front"></ng-content>
+      </div>
+      <div class="back" (click)="onBackClick()">
+        <ng-content select="flip-card-back"></ng-content>
+      </div>
+    </div>
+</div>

@@ -16,9 +16,9 @@
         </div>
 
         <div *ngIf="deck" class="d-flex flex-row align-items-center justify-content-center m-4">
-            <img [src]="'../../../assets/' + deck.fromLang + '.png'" class="language-icon"/>
-            <mat-icon style="transform: scale(2); margin: 0px 0px 0px 15px">arrow_forward</mat-icon>
-            <img [src]="'../../../assets/' + deck.toLang + '.png'" class="language-icon"/>
+            <img [src]="'../../../assets/' + deck.fromLang + '.png'" class="language-icon" style="margin-left: -10px;"/>
+            <mat-icon style="transform: scale(2); margin-left: 20px;">arrow_forward</mat-icon>
+            <img [src]="'../../../assets/' + deck.toLang + '.png'" class="language-icon" style="margin-right: -10px;"/>
         </div>
         
         <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>

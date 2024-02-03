@@ -1,1 +1,84 @@
-<p>learn works!</p>
+<div *ngIf="isLoading" class="d-flex h-100 align-items-center justify-content-center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading" class="h-100">
+    <div class="d-flex justify-content-center h-75 p-4">
+        <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 ">
+            <app-flip-card>
+                <flip-card-front>
+                    <h1 style="font-size: xx-large;">{{ frontCardData?.word }}</h1>
+                </flip-card-front>
+                <flip-card-back>
+                    <div class="back-card-head">
+                        <h1 style="font-size: xx-large;">{{ backCardData?.translation }}</h1>
+                        <button *ngIf="backCardData?.audioLink" mat-fab extended color="primary" class="mb-3" (click)="playAudio()">
+                            <mat-icon>play_arrow</mat-icon>
+                            Audio
+                        </button>
+                        <h1>{{ backCardData?.phonetic }}</h1>
+                    </div>
+
+                    <mat-accordion>
+                        <mat-expansion-panel *ngIf="backCardData?.definitions!.length > 0" class="m-1">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>Definitions</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div style="text-align: start;">
+                                <p *ngFor="let definition of backCardData?.definitions">{{definition}}</p>
+                            </div>
+                        </mat-expansion-panel>
+                        
+                        <mat-expansion-panel *ngIf="backCardData?.examples!.length > 0" class="m-1">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>Examples</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div style="text-align: start;">
+                                <p *ngFor="let example of backCardData?.examples">{{example}}</p>
+                            </div>
+                        </mat-expansion-panel>
+                        
+                        <mat-expansion-panel *ngIf="backCardData?.synonyms!.length > 0" class="m-1">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>Synonyms</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div style="text-align: start;">
+                                <p *ngFor="let synonym of backCardData?.synonyms">{{synonym}}</p>
+                            </div>
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel *ngIf="backCardData?.antonyms!.length > 0" class="m-1">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>Antonyms</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div style="text-align: start;">
+                                <p *ngFor="let antonym of backCardData?.antonyms">{{antonym}}</p>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </flip-card-back>
+            </app-flip-card>
+        </div>
+    </div>
+
+    <div *ngIf="!isCardFrontVisible" class="h-25 w-100 button-grid p-3">
+        <button class="button btn-easy btn" (click)="onEasyClick()">
+            <h1><b>Easy</b></h1>
+        </button>
+        <button class="button btn-good btn" (click)="onGoodClick()">
+            <h1><b>Good</b></h1>
+        </button>
+        <button class="button btn-hard btn" (click)="onHardClick()">
+            <h1><b>Hard</b></h1>
+        </button>
+        <button class="button btn-repeat btn" (click)="onRepeatClick()">
+            <h1><b>Repeat</b></h1>
+        </button>
+    </div>
+
+    <div *ngIf="isCardFrontVisible" class="h-25 w-100 d-flex align-items-center justify-content-center">
+        <button class="btn btn-next" (click)="onCheckClick()">
+            <h1><b>Check</b></h1>
+        </button>
+    </div>
+</div>

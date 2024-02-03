@@ -1,0 +1,106 @@
+.back-card-head {
+    padding-top: 10px;
+    background: #303030; 
+    border-top-right-radius: 6px; 
+    border-top-left-radius: 6px;
+    border-bottom: 1px solid white;
+}
+
+:host ::ng-deep .mat-expansion-panel {
+    background-color: rgba(187, 187, 187, 0.5) !important;
+  }
+  
+  :host ::ng-deep .mat-expansion-panel-header {
+    background-color: rgba(187, 187, 187, 0.5) !important;
+  }
+  
+  :host ::ng-deep .mat-expansion-panel-body {
+    background-color: rgba(187, 187, 187, 0.5) !important;
+  }
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-next {
+    height: 85px;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    background: #00A9FF;
+}
+
+.btn-next:hover {
+    background: #0099ff;
+}
+
+.btn-next:focus {
+    background: #0099ff;
+}
+
+.button {
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.btn-easy {
+    background: #b6f88a;
+}
+
+.btn-easy:focus {
+    background: #9bdf6d;
+}
+
+.btn-easy:hover {
+    background: #9bdf6d;
+}
+
+.btn-good {
+    background: #faf89a;
+}
+
+.btn-good:focus {
+    background: #dbda7c;
+}
+
+.btn-good:hover {
+    background: #dbda7c;
+}
+
+.btn-hard {
+    background: #d1a166;
+}
+
+.btn-hard:focus {
+    background: rgb(211, 156, 89);
+}
+
+.btn-hard:hover {
+    background: rgb(211, 156, 89);
+}
+
+.btn-repeat {
+    background: #e67171;
+}
+
+.btn-repeat:focus {
+    background: #d15f5f;
+}
+
+.btn-repeat:hover {
+    background: #d15f5f;
+}
+
+@media screen and (max-width: 1000px) {
+    .button-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

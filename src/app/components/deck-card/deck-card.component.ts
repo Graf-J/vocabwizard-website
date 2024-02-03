@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { OverallDeckResponse } from 'src/app/models/response/overall-deck-response.model';
 import { MatCardModule } from '@angular/material/card';
@@ -38,10 +38,22 @@ export class DeckCardComponent {
   @Input({ required: true }) deck!: OverallDeckResponse;
 
   constructor(
+    private readonly router: Router,
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
     private readonly deckService: DeckService,
   ) {}
+
+  onCardClick() {
+    if (this.deck.newCardCount + this.deck.oldCardCount > 0) {
+      this.router.navigate(['learn', this.deck.id]);
+    } else {
+      this.snackBar.openFromComponent(SnackbarComponent, {
+        duration: 5 * 1000,
+        data: { message: 'No Cards to learn' },
+      });
+    }
+  }
 
   onCopyDeckId() {
     this.snackBar.openFromComponent(SnackbarComponent, {

@@ -10,6 +10,7 @@ import { CreateDeckComponent } from './pages/create-deck/create-deck.component';
 import { ImportDeckComponent } from './pages/import-deck/import-deck.component';
 import { UserComponent } from './pages/user/user.component';
 import { adminGuard } from './services/guards/admin.guard';
+import { AddCardComponent } from './pages/add-card/add-card.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: '',
     component: DeckOverviewComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'add-card/:deckId',
+    component: AddCardComponent,
     canActivate: [authGuard],
   },
   {

@@ -1,11 +1,9 @@
 import { Language } from '../language.enum';
 
-export interface OverallDeckResponse {
+export interface DeckResponse {
   id: string;
   name: string;
   fromLang: Language;
   toLang: Language;
   learningRate: number;
-  oldCardCount: number;
-  newCardCount: number;
 }

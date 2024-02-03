@@ -64,3 +64,14 @@ export function getIdErrorMessage(errorKey: string): string {
       return 'Invalid';
   }
 }
+
+export function getWordErrorMessage(errorKey: string): string {
+  switch (errorKey) {
+    case 'required':
+      return 'Required';
+    case 'incorrect':
+      return '';
+    default:
+      return 'Invalid';
+  }
+}

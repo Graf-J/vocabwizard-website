@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { OverallDeckResponse } from '../models/response/overall-deck-response.model';
 import { Language } from '../models/language.enum';
 import { CreateDeckRequest } from '../models/request/create-deck-request.model';
+import { DeckResponse } from '../models/response/deck-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,12 @@ export class DeckService {
   async getDecks(): Promise<OverallDeckResponse[]> {
     return await firstValueFrom(
       this.http.get<OverallDeckResponse[]>(`${environment.SERVER_URL}/decks`),
+    );
+  }
+
+  async getDeck(id: string): Promise<DeckResponse> {
+    return await firstValueFrom(
+      this.http.get<DeckResponse>(`${environment.SERVER_URL}/decks/${id}`),
     );
   }
 

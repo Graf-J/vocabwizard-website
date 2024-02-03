@@ -67,6 +67,8 @@ export class AddCardComponent implements OnInit {
   }
 
   fetchDeck(id: string) {
+    this.wordForm.disable();
+
     this.deckService
       .getDeck(id)
       .then((res) => {
@@ -88,6 +90,7 @@ export class AddCardComponent implements OnInit {
       })
       .finally(() => {
         this.isDeckLoading = false;
+        this.wordForm.enable();
       });
   }
 

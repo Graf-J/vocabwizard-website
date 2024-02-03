@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, firstValueFrom } from 'rxjs';
+import { Subject, firstValueFrom, lastValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { OverallDeckResponse } from '../models/response/overall-deck-response.model';
 import { Language } from '../models/language.enum';
 import { CreateDeckRequest } from '../models/request/create-deck-request.model';
 import { DeckResponse } from '../models/response/deck-response.model';
+import { UpdateDeckRequest } from '../models/request/update-deck-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +48,17 @@ export class DeckService {
 
     return await firstValueFrom(
       this.http.post(`${environment.SERVER_URL}/decks`, payload),
+    );
+  }
+
+  async updateDeck(deckId: string, name: string, learningRate: number) {
+    const payload: UpdateDeckRequest = {
+      name,
+      learningRate,
+    };
+
+    return await lastValueFrom(
+      this.http.put(`${environment.SERVER_URL}/decks/${deckId}`, payload),
     );
   }
 

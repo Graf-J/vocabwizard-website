@@ -1,0 +1,28 @@
+<div class="container-fluid h-100 d-flex justify-content-center align-items-center">
+    <form class="bg-light col-8 col-sm-8 col-lg-6 col-xl-4 d-flex flex-column p-3 rounded text-center" [formGroup]="updateDeckForm" (ngSubmit)="onSubmit()">
+        <h1 style="font-size: xx-large;" class="mb-3">Update Deck</h1>
+
+        <mat-form-field class="mb-2" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput>
+            <mat-error *ngIf="updateDeckForm.get('name')?.errors">{{ getNameError() }}</mat-error>
+        </mat-form-field>
+
+        <div class="w-100 d-flex flex-column align-items-start">
+            <h3 style="color: rgb(128, 128, 128)">Learning Rate:</h3>
+            <mat-slider class="w-100" min="1" max="50" step="1" showTickMarks discrete>
+                <input matSliderThumb formControlName="learningRate">
+            </mat-slider>
+        </div>
+
+        <div *ngIf="deck" class="d-flex flex-row align-items-center justify-content-center m-4">
+            <img [src]="'../../../assets/' + deck.fromLang + '.png'" class="language-icon"/>
+            <mat-icon style="transform: scale(2); margin: 0px 0px 0px 15px">arrow_forward</mat-icon>
+            <img [src]="'../../../assets/' + deck.toLang + '.png'" class="language-icon"/>
+        </div>
+        
+        <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>
+        <button [disabled]="isLoading || updateDeckForm.invalid" mat-raised-button color="primary">Submit</button>
+        <mat-progress-bar *ngIf="isLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
+    </form>
+</div>

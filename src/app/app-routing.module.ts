@@ -11,6 +11,7 @@ import { ImportDeckComponent } from './pages/import-deck/import-deck.component';
 import { UserComponent } from './pages/user/user.component';
 import { adminGuard } from './services/guards/admin.guard';
 import { AddCardComponent } from './pages/add-card/add-card.component';
+import { UpdateDeckComponent } from './pages/update-deck/update-deck.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
   {
     path: 'import-deck',
     component: ImportDeckComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'update-deck/:deckId',
+    component: UpdateDeckComponent,
     canActivate: [authGuard],
   },
   {

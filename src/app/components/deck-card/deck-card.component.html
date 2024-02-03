@@ -7,7 +7,7 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item [routerLink]="['add-card/' + deck.id]">
+                        <button mat-menu-item [routerLink]="['add-card', deck.id]">
                             <span>Add Card</span>
                         </button>
                         <button mat-menu-item [cdkCopyToClipboard]="deck.id" (click)="onCopyDeckId()">
@@ -16,7 +16,7 @@
                         <button mat-menu-item>
                             <span>Statistics</span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item [routerLink]="['update-deck', deck.id]">
                             <span>Update Deck</span>
                         </button>
                         <button mat-menu-item (click)="reverseDeck()">

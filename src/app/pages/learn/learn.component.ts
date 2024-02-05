@@ -16,20 +16,9 @@ import {
   MatExpansionModule,
   MatExpansionPanel,
 } from '@angular/material/expansion';
-
-type FrontCardData = {
-  word: string;
-};
-
-type BackCardData = {
-  translation: string;
-  phonetic: string | null;
-  audioLink: string | null;
-  definitions: string[];
-  examples: string[];
-  synonyms: string[];
-  antonyms: string[];
-};
+import { FrontCard } from 'src/app/models/front-card.model';
+import { BackCard } from 'src/app/models/back-card.model';
+import { VocabCardComponent } from 'src/app/components/vocab-card/vocab-card.component';
 
 @Component({
   selector: 'app-learn',
@@ -44,21 +33,22 @@ type BackCardData = {
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
+    VocabCardComponent,
   ],
   viewProviders: [MatExpansionPanel],
   templateUrl: './learn.component.html',
   styleUrls: ['./learn.component.css'],
 })
 export class LearnComponent implements OnInit {
-  @ViewChild(FlipCardComponent) cardComponent!: FlipCardComponent;
+  @ViewChild(VocabCardComponent) cardComponent!: VocabCardComponent;
   isCardFrontVisible: boolean = true;
 
   deckId: string = '';
   isLoading: boolean = true;
   cards: CardResponse[] = [];
   currentCard!: CardResponse;
-  frontCardData?: FrontCardData;
-  backCardData?: BackCardData;
+  frontCardData?: FrontCard;
+  backCardData?: BackCard;
 
   constructor(
     private readonly route: ActivatedRoute,

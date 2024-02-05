@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorSnackbarComponent } from './snackbar.component';
+import { SnackbarComponent } from './snackbar.component';
 
 describe('ErrorSnackbarComponent', () => {
-  let component: ErrorSnackbarComponent;
-  let fixture: ComponentFixture<ErrorSnackbarComponent>;
+  let component: SnackbarComponent;
+  let fixture: ComponentFixture<SnackbarComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ErrorSnackbarComponent]
+      imports: [SnackbarComponent],
     });
-    fixture = TestBed.createComponent(ErrorSnackbarComponent);
+    fixture = TestBed.createComponent(SnackbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

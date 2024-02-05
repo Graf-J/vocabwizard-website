@@ -1,6 +1,6 @@
 .scrollable-container::-webkit-scrollbar {
     width: 0.5em;
-  }
+}
   
 .scrollable-container::-webkit-scrollbar-thumb {
     background-color: #9b9b9b;

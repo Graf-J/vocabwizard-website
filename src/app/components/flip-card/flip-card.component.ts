@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,9 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./flip-card.component.css'],
 })
 export class FlipCardComponent {
-  @Output() frontClickEvent = new EventEmitter();
-  @Output() backClickEvent = new EventEmitter();
-
   toggleProperty = false;
 
   constructor() {}
@@ -20,13 +17,5 @@ export class FlipCardComponent {
 
   flip() {
     this.toggleProperty = !this.toggleProperty;
-  }
-
-  onFrontClick() {
-    this.frontClickEvent.emit();
-  }
-
-  onBackClick() {
-    this.backClickEvent.emit();
   }
 }

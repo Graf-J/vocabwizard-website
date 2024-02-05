@@ -1,0 +1,78 @@
+<div *ngIf="isLoading" class="d-flex h-100 align-items-center justify-content-center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="isEmpty" class="d-flex flex-column h-100 justify-content-center align-items-center">
+    <h1 style="font-size: 3em; color: white">Deck is empty</h1>
+    <h1 style="font-size: 2em; color: grey">No Cards</h1>
+</div>
+
+<div *ngIf="!isEmpty" class="w-100 h-100 d-flex p-3">
+    <div class="col-12 col-xl-8 scrollable-container overflow-auto table-wrapper">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+            <ng-container matColumnDef="word">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by word">
+                    Word
+                </th>
+                <td mat-cell *matCellDef="let element" class="card-table-column ellipsis-column"> {{element.word}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="stage">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by stage">
+                    Stage
+                </th>
+                <td mat-cell *matCellDef="let element" class="card-table-column"> {{element.stage}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by createdAt">
+                    CreatedAt
+                </th>
+                <td mat-cell *matCellDef="let element" class="card-table-column"> {{element.createdAt | date: 'medium'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expires">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by expires">
+                    Expires
+                </th>
+                <td mat-cell *matCellDef="let element" class="card-table-column"> {{element.expires | date: 'medium'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="view">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by expires">
+                    View
+                </th>
+                <td mat-cell *matCellDef="let element" class="card-table-column"> 
+                    <button mat-fab color="primary" (click)="onVisibilityClick(element)">
+                        <mat-icon>visibility</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by expires">
+                    Delete
+                </th>
+                <td mat-cell *matCellDef="let element" class="card-table-column"> 
+                    <button mat-fab color="warn" (click)="onDeleteClick(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+    <div class="d-none d-xl-block col-4" style="padding: 20px" *ngIf="frontCardData && backCardData">
+        <div style="height: 85%;">
+            <app-vocab-card [frontCardData]="frontCardData" [backCardData]="backCardData"/>
+        </div>
+        <div class="d-flex align-items-center justify-content-center"  style="height: 15%;">
+            <button mat-raised-button color="accent" style="width: 50%; height: 50px; padding-top: 15px" (click)="onFlipClick()">
+                <h1>Flip</h1>
+            </button>
+        </div>
+    </div>
+</div>

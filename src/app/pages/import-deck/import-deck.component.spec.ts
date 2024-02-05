@@ -8,7 +8,7 @@ describe('ImportDeckComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ImportDeckComponent]
+      imports: [ImportDeckComponent],
     });
     fixture = TestBed.createComponent(ImportDeckComponent);
     component = fixture.componentInstance;

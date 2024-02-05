@@ -12,6 +12,9 @@ import { UserComponent } from './pages/user/user.component';
 import { adminGuard } from './services/guards/admin.guard';
 import { AddCardComponent } from './pages/add-card/add-card.component';
 import { UpdateDeckComponent } from './pages/update-deck/update-deck.component';
+import { ViewCardsComponent } from './pages/view-cards/view-cards.component';
+import { CardComponent } from './pages/card/card.component';
+import { smallPageGuard } from './services/guards/small-page.guard';
 
 const routes: Routes = [
   {
@@ -53,6 +56,16 @@ const routes: Routes = [
     path: 'learn/:deckId',
     component: LearnComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: 'view-cards/:deckId',
+    component: ViewCardsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'card/:deckId',
+    component: CardComponent,
+    canActivate: [authGuard, smallPageGuard],
   },
   {
     path: 'user',

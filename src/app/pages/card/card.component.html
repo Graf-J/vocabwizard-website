@@ -1,0 +1,13 @@
+<div class="h-100 w-100">
+    <div class="col-11 p-5" style="height: 80%">
+        <app-vocab-card [frontCardData]="frontCardData" [backCardData]="backCardData"/>
+    </div>
+    <div class="d-flex flex-column justify-content-center align-items-center" style="height: 20%">
+        <button mat-raised-button color="accent" (click)="onFlipClick()" class="m-1" style="width: 50vw; height: 7vh; padding-top: 15px;">
+            <h1>Flip</h1>
+        </button>
+        <button mat-stroked-button color="warn" [routerLink]="['/view-cards', deckId]" class="m-1" style="width: 50vw; height: 7vh; padding-top: 15px;">
+            <h1>Back</h1>
+        </button>
+    </div>
+</div>

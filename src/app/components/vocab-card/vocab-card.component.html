@@ -1,0 +1,53 @@
+<app-flip-card>
+    <flip-card-front>
+        <h1 style="font-size: xx-large;">{{ frontCardData?.word }}</h1>
+    </flip-card-front>
+    <flip-card-back>
+        <div class="back-card-head">
+            <h1 style="font-size: xx-large;">{{ backCardData?.translation }}</h1>
+            <button *ngIf="backCardData?.audioLink" mat-fab extended color="primary" class="mb-3" (click)="playAudio()">
+                <mat-icon>play_arrow</mat-icon>
+                Audio
+            </button>
+            <h1>{{ backCardData?.phonetic }}</h1>
+        </div>
+
+        <mat-accordion>
+            <mat-expansion-panel *ngIf="backCardData?.definitions!.length > 0" class="m-1">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Definitions</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div style="text-align: start;">
+                    <p *ngFor="let definition of backCardData?.definitions">{{definition}}</p>
+                </div>
+            </mat-expansion-panel>
+            
+            <mat-expansion-panel *ngIf="backCardData?.examples!.length > 0" class="m-1">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Examples</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div style="text-align: start;">
+                    <p *ngFor="let example of backCardData?.examples">{{example}}</p>
+                </div>
+            </mat-expansion-panel>
+            
+            <mat-expansion-panel *ngIf="backCardData?.synonyms!.length > 0" class="m-1">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Synonyms</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div style="text-align: start;">
+                    <p *ngFor="let synonym of backCardData?.synonyms">{{synonym}}</p>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel *ngIf="backCardData?.antonyms!.length > 0" class="m-1">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Antonyms</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div style="text-align: start;">
+                    <p *ngFor="let antonym of backCardData?.antonyms">{{antonym}}</p>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </flip-card-back>
+</app-flip-card>

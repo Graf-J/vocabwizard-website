@@ -19,7 +19,7 @@
                         <button mat-menu-item [routerLink]="['update-deck', deck.id]">
                             <span>Update Deck</span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item [routerLink]="['view-cards', deck.id]">
                             <span>View Cards</span>
                         </button>
                         <button mat-menu-item (click)="reverseDeck()">

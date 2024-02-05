@@ -8,7 +8,7 @@ describe('UpdateDeckComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [UpdateDeckComponent]
+      imports: [UpdateDeckComponent],
     });
     fixture = TestBed.createComponent(UpdateDeckComponent);
     component = fixture.componentInstance;

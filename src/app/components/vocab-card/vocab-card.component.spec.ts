@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FlipCardComponent } from './flip-card.component';
+import { VocabCardComponent } from './vocab-card.component';
 
-describe('FlipCardComponent', () => {
-  let component: FlipCardComponent;
-  let fixture: ComponentFixture<FlipCardComponent>;
+describe('VocabCardComponent', () => {
+  let component: VocabCardComponent;
+  let fixture: ComponentFixture<VocabCardComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FlipCardComponent],
+      imports: [VocabCardComponent],
     });
-    fixture = TestBed.createComponent(FlipCardComponent);
+    fixture = TestBed.createComponent(VocabCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

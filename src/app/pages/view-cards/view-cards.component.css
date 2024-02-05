@@ -25,3 +25,11 @@
 .scrollable-container::-webkit-scrollbar-track {
     background-color: transparent;
 }
+
+.hidden {
+    display: None;
+}
+
+.visible {
+    display: block;
+}

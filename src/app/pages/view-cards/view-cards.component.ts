@@ -93,8 +93,11 @@ export class ViewCardsComponent implements OnInit, OnDestroy {
       .getCards(deckId)
       .then((res: CardInfoResponse[]) => {
         this.isEmpty = res.length === 0;
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.sort = this.sort;
+        // Defer execution to make sorting work
+        setTimeout(() => {
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.sort = this.sort;
+        }, 0);
       })
       .catch((error: HttpErrorResponse) => {
         this.snackBar.openFromComponent(SnackbarComponent, {

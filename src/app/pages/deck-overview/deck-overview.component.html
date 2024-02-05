@@ -2,10 +2,13 @@
     <mat-spinner></mat-spinner>
 </div>
 
-<div *ngIf="!isLoading" class="container d-flex flex-column h-100 align-items-center pt-3">
-    <h1 *ngIf="decks!.length > 0" class="deck-text">Your Decks:</h1>
+<div *ngIf="!isLoading && decks!.length === 0" class="h-100 d-flex flex-column align-items-center justify-content-center">
     <h1 *ngIf="decks!.length === 0" class="deck-text">You have no Decks</h1>
     <h1 *ngIf="decks!.length === 0" class="deck-subtext">Create your first Deck to start</h1>
+</div>
+
+<div *ngIf="!isLoading" class="container d-flex flex-column h-100 align-items-center pt-3">
+    <h1 *ngIf="decks!.length > 0" class="deck-text">Your Decks:</h1>
 
     <div class="w-100 scrollable-container overflow-auto">
         <div *ngFor="let deck of decks" class="m-2">

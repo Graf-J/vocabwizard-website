@@ -15,6 +15,7 @@ import { UpdateDeckComponent } from './pages/update-deck/update-deck.component';
 import { ViewCardsComponent } from './pages/view-cards/view-cards.component';
 import { CardComponent } from './pages/card/card.component';
 import { smallPageGuard } from './services/guards/small-page.guard';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,11 @@ const routes: Routes = [
     path: 'card/:deckId',
     component: CardComponent,
     canActivate: [authGuard, smallPageGuard],
+  },
+  {
+    path: 'statistics/:deckId',
+    component: StatisticsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'user',

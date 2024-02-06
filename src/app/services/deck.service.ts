@@ -7,6 +7,7 @@ import { Language } from '../models/language.enum';
 import { CreateDeckRequest } from '../models/request/create-deck-request.model';
 import { DeckResponse } from '../models/response/deck-response.model';
 import { UpdateDeckRequest } from '../models/request/update-deck-request.model';
+import { Stat } from '../models/response/stat.model';
 
 @Injectable({
   providedIn: 'root',
@@ -71,6 +72,12 @@ export class DeckService {
   async import(id: string) {
     return await firstValueFrom(
       this.http.post(`${environment.SERVER_URL}/decks/import`, { deckId: id }),
+    );
+  }
+
+  async stats(id: string): Promise<Stat[]> {
+    return await firstValueFrom(
+      this.http.get<Stat[]>(`${environment.SERVER_URL}/decks/${id}/stats`),
     );
   }
 

@@ -8,10 +8,11 @@ describe('StagePlotComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [StagePlotComponent]
+      imports: [StagePlotComponent],
     });
     fixture = TestBed.createComponent(StagePlotComponent);
     component = fixture.componentInstance;
+    component.stats = [];
     fixture.detectChanges();
   });
 

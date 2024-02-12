@@ -4,30 +4,30 @@
 
         <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Name</mat-label>
-            <input formControlName="name" matInput>
-            <mat-error *ngIf="registerForm.get('name')?.errors">{{ getNameError() }}</mat-error>
+            <input formControlName="name" matInput data-testid="register-name-input-field">
+            <mat-error *ngIf="registerForm.get('name')?.errors" data-testid="register-name-mat-error">{{ getNameError() }}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Password</mat-label>
-            <input [type]="hidePassword ? 'password' : 'text'" autocomplete="on" formControlName="password" matInput>
+            <input [type]="hidePassword ? 'password' : 'text'" autocomplete="on" formControlName="password" matInput data-testid="register-password-input-field">
             <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
                 <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error *ngIf="registerForm.get('password')?.errors">{{ getPasswordError() }}</mat-error>
+            <mat-error *ngIf="registerForm.get('password')?.errors" data-testid="register-password-mat-error">{{ getPasswordError() }}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Password-Confirmation</mat-label>
-            <input [type]="hidePasswordConfirmation ? 'password' : 'text'" autocomplete="on" formControlName="passwordConfirmation" matInput>
+            <input [type]="hidePasswordConfirmation ? 'password' : 'text'" autocomplete="on" formControlName="passwordConfirmation" matInput  data-testid="register-password-confirm-input-field">
             <button type="button" mat-icon-button matSuffix (click)="hidePasswordConfirmation = !hidePasswordConfirmation">
                 <mat-icon>{{hidePasswordConfirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error *ngIf="registerForm.get('passwordConfirmation')?.errors">{{ getPasswordConfirmationError() }}</mat-error>
+            <mat-error *ngIf="registerForm.get('passwordConfirmation')?.errors" data-testid="register-password-confirm-mat-error">{{ getPasswordConfirmationError() }}</mat-error>
         </mat-form-field>
         
-        <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>
-        <button [disabled]="isLoading || registerForm.invalid" mat-raised-button color="primary">Submit</button>
+        <p *ngIf="generalErrorMessage.length > 0" class="text-danger" data-testid="register-general-error">{{ generalErrorMessage }}</p>
+        <button data-testid="register-submit-button" [disabled]="isLoading || registerForm.invalid" mat-raised-button color="primary">Submit</button>
         <mat-progress-bar *ngIf="isLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
 
         <div class="d-flex mt-4">

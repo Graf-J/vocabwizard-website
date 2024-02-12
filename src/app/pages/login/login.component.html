@@ -4,26 +4,26 @@
 
         <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Name</mat-label>
-            <input formControlName="name" matInput data-cy="login-name-input-field">
-            <mat-error *ngIf="loginForm.get('name')?.errors?.['required']" data-cy="login-name-mat-error">Required</mat-error>
+            <input formControlName="name" matInput data-testid="login-name-input-field">
+            <mat-error *ngIf="loginForm.get('name')?.errors?.['required']" data-testid="login-name-mat-error">Required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Password</mat-label>
-            <input [type]="hide ? 'password' : 'text'" autocomplete="on" formControlName="password" matInput data-cy="login-password-input-field">
+            <input [type]="hide ? 'password' : 'text'" autocomplete="on" formControlName="password" matInput data-testid="login-password-input-field">
             <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error *ngIf="loginForm.get('password')?.errors?.['required']" data-cy="login-password-mat-error">Required</mat-error>
+            <mat-error *ngIf="loginForm.get('password')?.errors?.['required']" data-testid="login-password-mat-error">Required</mat-error>
         </mat-form-field>
         
-        <p *ngIf="generalErrorMessage.length > 0" class="text-danger" data-cy="login-general-error">{{ generalErrorMessage }}</p>
-        <button data-cy="login-submit-button" [disabled]="isLoading || loginForm.invalid" mat-raised-button color="primary">Submit</button>
+        <p *ngIf="generalErrorMessage.length > 0" class="text-danger" data-testid="login-general-error">{{ generalErrorMessage }}</p>
+        <button data-testid="login-submit-button" [disabled]="isLoading || loginForm.invalid" mat-raised-button color="primary">Submit</button>
         <mat-progress-bar *ngIf="isLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
 
         <div class="d-flex mt-4">
             <span style="margin-right: 5px">Don't have an account?</span>
-            <a [routerLink]="['/register']" data-cy="register-link">Register</a>
+            <a [routerLink]="['/register']" data-testid="register-link">Register</a>
         </div>
     </form>
 </div>

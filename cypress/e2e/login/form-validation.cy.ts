@@ -1,51 +1,57 @@
 /// <reference types="cypress" />
-describe('Field Validation', () => {
+describe('Form Validation', () => {
   beforeEach(() => {
     cy.visit('http://localhost:4200/login');
   });
 
   it('should disable button if name field is empty', () => {
-    cy.get('[data-cy="login-name-input-field"]')
-      .type('Test-User')
-      .should('have.value', 'Test-User');
-
-    cy.get('[data-cy="login-submit-button"]').should('have.attr', 'disabled');
-  });
-
-  it('should disable button if password field is empty', () => {
-    cy.get('[data-cy="login-password-input-field"]')
+    cy.get('[data-testid="login-password-input-field"]')
       .type('test#1')
       .should('have.value', 'test#1');
 
-    cy.get('[data-cy="login-submit-button"]').should('have.attr', 'disabled');
+    cy.get('[data-testid="login-submit-button"]').should(
+      'have.attr',
+      'disabled',
+    );
+  });
+
+  it('should disable button if password field is empty', () => {
+    cy.get('[data-testid="login-name-input-field"]')
+      .type('Test-User')
+      .should('have.value', 'Test-User');
+
+    cy.get('[data-testid="login-submit-button"]').should(
+      'have.attr',
+      'disabled',
+    );
   });
 
   it('should show error message if name field is empty', () => {
-    cy.get('[data-cy="login-name-input-field"]').focus();
-    cy.get('[data-cy="login-name-input-field"]').blur();
-    cy.get('[data-cy="login-name-mat-error"]')
+    cy.get('[data-testid="login-name-input-field"]').focus();
+    cy.get('[data-testid="login-name-input-field"]').blur();
+    cy.get('[data-testid="login-name-mat-error"]')
       .should('be.visible')
       .and('have.text', 'Required');
   });
 
   it('should show error message if password field is empty', () => {
-    cy.get('[data-cy="login-password-input-field"]').focus();
-    cy.get('[data-cy="login-password-input-field"]').blur();
-    cy.get('[data-cy="login-password-mat-error"]')
+    cy.get('[data-testid="login-password-input-field"]').focus();
+    cy.get('[data-testid="login-password-input-field"]').blur();
+    cy.get('[data-testid="login-password-mat-error"]')
       .should('be.visible')
       .and('have.text', 'Required');
   });
 
   it('should enable button if fields are not empty', () => {
-    cy.get('[data-cy="login-name-input-field"]')
+    cy.get('[data-testid="login-name-input-field"]')
       .type('Test-User')
       .should('have.value', 'Test-User');
 
-    cy.get('[data-cy="login-password-input-field"]')
+    cy.get('[data-testid="login-password-input-field"]')
       .type('test#1')
       .should('have.value', 'test#1');
 
-    cy.get('[data-cy="login-submit-button"]').should(
+    cy.get('[data-testid="login-submit-button"]').should(
       'not.have.attr',
       'disabled',
     );
@@ -63,18 +69,21 @@ describe('Field Validation', () => {
       });
     });
 
-    cy.get('[data-cy="login-name-input-field"]')
+    cy.get('[data-testid="login-name-input-field"]')
       .type('Test-User')
       .should('have.value', 'Test-User');
 
-    cy.get('[data-cy="login-password-input-field"]')
+    cy.get('[data-testid="login-password-input-field"]')
       .type('test#1')
       .should('have.value', 'test#1');
 
-    cy.get('[data-cy="login-submit-button"]').click();
+    cy.get('[data-testid="login-submit-button"]').click();
 
-    cy.get('[data-cy="login-submit-button"]').should('have.attr', 'disabled');
-    cy.get('[data-cy="login-general-error"]')
+    cy.get('[data-testid="login-submit-button"]').should(
+      'have.attr',
+      'disabled',
+    );
+    cy.get('[data-testid="login-general-error"]')
       .should('be.visible')
       .and('have.text', 'Username or Password is not valid');
   });
@@ -84,21 +93,21 @@ describe('Field Validation', () => {
       req.reply({
         statusCode: 200,
         body: {
-          AccessToken: 'asdf',
+          AccessToken: 'token',
         },
       });
     });
 
-    cy.get('[data-cy="login-name-input-field"]')
+    cy.get('[data-testid="login-name-input-field"]')
       .type('Test-User')
       .should('have.value', 'Test-User');
 
-    cy.get('[data-cy="login-password-input-field"]')
+    cy.get('[data-testid="login-password-input-field"]')
       .type('test#1')
       .should('have.value', 'test#1');
 
-    cy.get('[data-cy="login-submit-button"]').click();
+    cy.get('[data-testid="login-submit-button"]').click();
 
-    cy.get('[data-cy="login-general-error"]').should('not.exist');
+    cy.get('[data-testid="login-general-error"]').should('not.exist');
   });
 });

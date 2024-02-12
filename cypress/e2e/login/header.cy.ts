@@ -5,6 +5,6 @@ describe('Header', () => {
   });
 
   it('should not be visible', () => {
-    cy.get('[data-testid=header]').should('not.exist');
+    cy.get('[data-testid="header"]').should('not.exist');
   });
 });

@@ -4,8 +4,8 @@
 
         <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Name</mat-label>
-            <input formControlName="name" matInput>
-            <mat-error *ngIf="createDeckForm.get('name')?.errors">{{ getNameError() }}</mat-error>
+            <input formControlName="name" matInput data-testid="create-deck-name-input-field">
+            <mat-error *ngIf="createDeckForm.get('name')?.errors" data-testid="create-deck-name-mat-error">{{ getNameError() }}</mat-error>
         </mat-form-field>
 
         <div class="w-100 d-flex flex-column align-items-start">
@@ -17,7 +17,7 @@
 
         <mat-form-field>
             <mat-label>Source Language</mat-label>
-            <mat-select formControlName="sourceLanguage">
+            <mat-select formControlName="sourceLanguage" data-testid="create-deck-source-language-select">
                 <mat-select-trigger *ngIf="createDeckForm.get('sourceLanguage')?.value">
                     <img [src]="'../../../assets/' + createDeckForm.get('sourceLanguage')?.value + '.png'" class="language-icon">
                     {{ getLanguageString(createDeckForm.get('sourceLanguage')?.value) }}
@@ -27,12 +27,12 @@
                     {{language.viewValue}}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="createDeckForm.get('sourceLanguage')?.errors">{{ getSourceLanguageError() }}</mat-error>
+            <mat-error *ngIf="createDeckForm.get('sourceLanguage')?.errors" data-testid="create-deck-source-language-mat-error">{{ getSourceLanguageError() }}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Target Language</mat-label>
-            <mat-select formControlName="targetLanguage">
+            <mat-select formControlName="targetLanguage" data-testid="create-deck-target-language-select">
                 <mat-select-trigger *ngIf="createDeckForm.get('targetLanguage')?.value">
                     <img [src]="'../../../assets/' + createDeckForm.get('targetLanguage')?.value + '.png'" class="language-icon">
                     {{ getLanguageString(createDeckForm.get('targetLanguage')?.value) }}
@@ -42,11 +42,11 @@
                     {{language.viewValue}}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="createDeckForm.get('targetLanguage')?.errors">{{ getTargetLanguageError() }}</mat-error>
+            <mat-error *ngIf="createDeckForm.get('targetLanguage')?.errors" data-testid="create-deck-target-language-mat-error">{{ getTargetLanguageError() }}</mat-error>
         </mat-form-field>
         
-        <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>
-        <button [disabled]="isLoading || createDeckForm.invalid" mat-raised-button color="primary">Submit</button>
+        <p *ngIf="generalErrorMessage.length > 0" class="text-danger" data-testid="create-deck-general-error">{{ generalErrorMessage }}</p>
+        <button [disabled]="isLoading || createDeckForm.invalid" mat-raised-button color="primary" data-testid="create-deck-submit-button">Submit</button>
         <mat-progress-bar *ngIf="isLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
     </form>
 </div>

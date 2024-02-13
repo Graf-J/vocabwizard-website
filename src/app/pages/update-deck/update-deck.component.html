@@ -4,8 +4,8 @@
 
         <mat-form-field class="mb-2" appearance="fill">
             <mat-label>Name</mat-label>
-            <input formControlName="name" matInput>
-            <mat-error *ngIf="updateDeckForm.get('name')?.errors">{{ getNameError() }}</mat-error>
+            <input formControlName="name" matInput data-testid="update-deck-name-input-field">
+            <mat-error *ngIf="updateDeckForm.get('name')?.errors" data-testid="update-deck-name-mat-error">{{ getNameError() }}</mat-error>
         </mat-form-field>
 
         <div class="w-100 d-flex flex-column align-items-start">
@@ -21,8 +21,8 @@
             <img [src]="'../../../assets/' + deck.toLang + '.png'" class="language-icon" style="margin-right: -10px;"/>
         </div>
         
-        <p *ngIf="generalErrorMessage.length > 0" class="text-danger">{{ generalErrorMessage }}</p>
-        <button [disabled]="isLoading || updateDeckForm.invalid" mat-raised-button color="primary">Submit</button>
+        <p *ngIf="generalErrorMessage.length > 0" class="text-danger" data-testid="update-deck-general-error">{{ generalErrorMessage }}</p>
+        <button [disabled]="isLoading || updateDeckForm.invalid" mat-raised-button color="primary" data-testid="update-deck-submit-button">Submit</button>
         <mat-progress-bar *ngIf="isLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
     </form>
 </div>

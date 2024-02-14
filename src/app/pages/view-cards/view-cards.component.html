@@ -14,28 +14,28 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by word">
                     Word
                 </th>
-                <td mat-cell *matCellDef="let element" class="card-table-column ellipsis-column"> {{element.word}} </td>
+                <td mat-cell *matCellDef="let element" class="card-table-column ellipsis-column" data-testid="view-cards-word">{{element.word}}</td>
             </ng-container>
 
             <ng-container matColumnDef="stage">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by stage">
                     Stage
                 </th>
-                <td mat-cell *matCellDef="let element" class="card-table-column"> {{element.stage}} </td>
+                <td mat-cell *matCellDef="let element" class="card-table-column" data-testid="view-cards-stage">{{element.stage}}</td>
             </ng-container>
 
             <ng-container matColumnDef="createdAt">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by createdAt">
                     CreatedAt
                 </th>
-                <td mat-cell *matCellDef="let element" class="card-table-column"> {{element.createdAt | date: 'medium'}} </td>
+                <td mat-cell *matCellDef="let element" class="card-table-column" data-testid="view-cards-created-at">{{element.createdAt | date: 'medium'}}</td>
             </ng-container>
 
             <ng-container matColumnDef="expires">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by expires">
                     Expires
                 </th>
-                <td mat-cell *matCellDef="let element" class="card-table-column"> {{element.expires | date: 'medium'}} </td>
+                <td mat-cell *matCellDef="let element" class="card-table-column" data-testid="view-cards-expires">{{element.expires | date: 'medium'}}</td>
             </ng-container>
 
             <ng-container matColumnDef="view">
@@ -43,7 +43,7 @@
                     View
                 </th>
                 <td mat-cell *matCellDef="let element" class="card-table-column"> 
-                    <button mat-fab color="primary" (click)="onVisibilityClick(element)">
+                    <button mat-fab color="primary" (click)="onVisibilityClick(element)" data-testid="view-cards-view-button">
                         <mat-icon>visibility</mat-icon>
                     </button>
                 </td>
@@ -54,7 +54,7 @@
                     Delete
                 </th>
                 <td mat-cell *matCellDef="let element" class="card-table-column"> 
-                    <button mat-fab color="warn" (click)="onDeleteClick(element)">
+                    <button mat-fab color="warn" (click)="onDeleteClick(element)" data-testid="view-cards-delete-button">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>
@@ -67,7 +67,7 @@
 
     <div class="d-none d-xl-block col-4" style="padding: 20px" *ngIf="frontCardData && backCardData">
         <div style="height: 85%;">
-            <app-vocab-card [frontCardData]="frontCardData" [backCardData]="backCardData"/>
+            <app-vocab-card [frontCardData]="frontCardData" [backCardData]="backCardData" data-testid="view-cards-card"/>
         </div>
         <div class="d-flex align-items-center justify-content-center"  style="height: 15%;">
             <button mat-raised-button color="accent" style="width: 50%; height: 50px; padding-top: 15px" (click)="onFlipClick()">

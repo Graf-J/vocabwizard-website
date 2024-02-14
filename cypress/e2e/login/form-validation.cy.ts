@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 describe('Form Validation', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200/login');
+    cy.visit(`${Cypress.env('CLIENT_URL')}/login`);
   });
 
   it('should disable button if name field is empty', () => {
@@ -58,7 +58,7 @@ describe('Form Validation', () => {
   });
 
   it('should display general error if credentials are not valid', () => {
-    cy.intercept('POST', 'http://localhost:3000/auth/login', (req) => {
+    cy.intercept('POST', `${Cypress.env('SERVER_URL')}/auth/login`, (req) => {
       req.reply({
         statusCode: 401,
         body: {
@@ -89,7 +89,7 @@ describe('Form Validation', () => {
   });
 
   it('should not display general error if credentials are valid', () => {
-    cy.intercept('POST', 'http://localhost:3000/auth/login', (req) => {
+    cy.intercept('POST', `${Cypress.env('SERVER_URL')}/auth/login`, (req) => {
       req.reply({
         statusCode: 200,
         body: {

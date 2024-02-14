@@ -1,6 +1,6 @@
-describe('Header', () => {
+describe('Form Validation', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'http://localhost:3000/decks/deck-id', (req) => {
+    cy.intercept('GET', `${Cypress.env('SERVER_URL')}/decks/deck-id`, (req) => {
       req.reply({
         statusCode: 200,
         body: {
@@ -18,7 +18,7 @@ describe('Header', () => {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxNWViNWY3M2IyODczZTY4MWE3ZTAiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTcwNzc3MDQ1OCwiZXhwIjoxNzQ4NjU3MDQ1OH0.Vcu_lRWJ6C2CF5vMRsqGf453tgiQ5m9P8pb4PVV_qaU',
     );
 
-    cy.visit('http://localhost:4200/update-deck/deck-id');
+    cy.visit(`${Cypress.env('CLIENT_URL')}/update-deck/deck-id`);
 
     cy.wait('@getDeck');
   });
@@ -51,7 +51,7 @@ describe('Header', () => {
   });
 
   it('should display general error if server-side problem occours', () => {
-    cy.intercept('PUT', 'http://localhost:3000/decks/deck-id', (req) => {
+    cy.intercept('PUT', `${Cypress.env('SERVER_URL')}/decks/deck-id`, (req) => {
       req.reply({
         statusCode: 409,
         body: {
@@ -79,7 +79,7 @@ describe('Header', () => {
   });
 
   it('should not display general error if no server-side problem occours', () => {
-    cy.intercept('POST', 'http://localhost:3000/decks', (req) => {
+    cy.intercept('POST', `${Cypress.env('SERVER_URL')}/decks`, (req) => {
       req.reply({
         statusCode: 201,
         body: {

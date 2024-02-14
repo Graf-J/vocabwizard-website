@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 describe('Form Validation', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200/register');
+    cy.visit(`${Cypress.env('CLIENT_URL')}/register`);
   });
 
   it('should disable button if name field is empty', () => {
@@ -160,16 +160,20 @@ describe('Form Validation', () => {
   });
 
   it('should display general error if server-side problem occours', () => {
-    cy.intercept('POST', 'http://localhost:3000/auth/register', (req) => {
-      req.reply({
-        statusCode: 409,
-        body: {
-          message: 'User with name Test-User already exist',
-          error: 'Conflict',
+    cy.intercept(
+      'POST',
+      `${Cypress.env('SERVER_URL')}/auth/register`,
+      (req) => {
+        req.reply({
           statusCode: 409,
-        },
-      });
-    });
+          body: {
+            message: 'User with name Test-User already exist',
+            error: 'Conflict',
+            statusCode: 409,
+          },
+        });
+      },
+    );
 
     cy.get('[data-testid="register-name-input-field"]')
       .type('Test-User')
@@ -195,14 +199,18 @@ describe('Form Validation', () => {
   });
 
   it('should not display general error if no server-side problem occours', () => {
-    cy.intercept('POST', 'http://localhost:3000/auth/register', (req) => {
-      req.reply({
-        statusCode: 200,
-        body: {
-          AccessToken: 'token',
-        },
-      });
-    });
+    cy.intercept(
+      'POST',
+      `${Cypress.env('SERVER_URL')}/auth/register`,
+      (req) => {
+        req.reply({
+          statusCode: 200,
+          body: {
+            AccessToken: 'token',
+          },
+        });
+      },
+    );
 
     cy.get('[data-testid="register-name-input-field"]')
       .type('Test-User')

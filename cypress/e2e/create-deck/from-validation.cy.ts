@@ -5,7 +5,7 @@ describe('Form Validation', () => {
       'AccessToken',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxNWViNWY3M2IyODczZTY4MWE3ZTAiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTcwNzc3MDQ1OCwiZXhwIjoxNzQ4NjU3MDQ1OH0.Vcu_lRWJ6C2CF5vMRsqGf453tgiQ5m9P8pb4PVV_qaU',
     );
-    cy.visit('http://localhost:4200/create-deck');
+    cy.visit(`${Cypress.env('CLIENT_URL')}/create-deck`);
   });
 
   it('should disable button if name field is empty', () => {
@@ -154,7 +154,7 @@ describe('Form Validation', () => {
   });
 
   it('should display general error if server-side problem occours', () => {
-    cy.intercept('POST', 'http://localhost:3000/decks', (req) => {
+    cy.intercept('POST', `${Cypress.env('SERVER_URL')}/decks`, (req) => {
       req.reply({
         statusCode: 409,
         body: {
@@ -193,7 +193,7 @@ describe('Form Validation', () => {
   });
 
   it('should not display general error if no server-side problem occours', () => {
-    cy.intercept('POST', 'http://localhost:3000/decks', (req) => {
+    cy.intercept('POST', `${Cypress.env('SERVER_URL')}/decks`, (req) => {
       req.reply({
         statusCode: 201,
         body: {

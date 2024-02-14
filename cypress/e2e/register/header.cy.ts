@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 describe('Header', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200/register');
+    cy.visit(`${Cypress.env('CLIENT_URL')}/register`);
   });
 
   it('should not be visible', () => {

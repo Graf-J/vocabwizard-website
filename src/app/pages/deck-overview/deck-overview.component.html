@@ -11,17 +11,17 @@
     <h1 *ngIf="decks!.length > 0" class="deck-text">Your Decks:</h1>
 
     <div class="w-100 scrollable-container overflow-auto">
-        <div *ngFor="let deck of decks" class="m-2">
+        <div *ngFor="let deck of decks" class="m-2" data-testid="deck-overview-cards">
             <app-deck-card [deck]="deck" />
         </div>
     </div>
 
-    <button mat-fab extended color="accent" style="position: fixed; bottom: 10px; right: 10px;" [routerLink]="['/create-deck']">
+    <button mat-fab extended color="accent" style="position: fixed; bottom: 10px; right: 10px;" [routerLink]="['/create-deck']" data-testid="deck-overview-import-button">
         <mat-icon>add</mat-icon>
         Create
     </button>
 
-    <button mat-fab extended color="accent" style="position: fixed; bottom: 10px; left: 10px;" [routerLink]="['/import-deck']">
+    <button mat-fab extended color="accent" style="position: fixed; bottom: 10px; left: 10px;" [routerLink]="['/import-deck']" data-testid="deck-overview-create-button">
         <mat-icon>arrow_upward</mat-icon>
         Import
     </button>

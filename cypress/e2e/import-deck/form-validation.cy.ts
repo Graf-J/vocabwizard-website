@@ -5,7 +5,7 @@ describe('Form Validation', () => {
       'AccessToken',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxNWViNWY3M2IyODczZTY4MWE3ZTAiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTcwNzc3MDQ1OCwiZXhwIjoxNzQ4NjU3MDQ1OH0.Vcu_lRWJ6C2CF5vMRsqGf453tgiQ5m9P8pb4PVV_qaU',
     );
-    cy.visit('http://localhost:4200/import-deck');
+    cy.visit(`${Cypress.env('CLIENT_URL')}/import-deck`);
   });
 
   it('should disable button if deck-id field is empty', () => {
@@ -29,7 +29,7 @@ describe('Form Validation', () => {
   });
 
   it('should display general error if server-side problem occours', () => {
-    cy.intercept('POST', 'http://localhost:3000/decks/import', (req) => {
+    cy.intercept('POST', `${Cypress.env('SERVER_URL')}/decks/import`, (req) => {
       req.reply({
         statusCode: 409,
         body: {
@@ -56,7 +56,7 @@ describe('Form Validation', () => {
   });
 
   it('should not display general error if no server-side problem occours', () => {
-    cy.intercept('POST', 'http://localhost:3000/decks/import', (req) => {
+    cy.intercept('POST', `${Cypress.env('SERVER_URL')}/decks/import`, (req) => {
       req.reply({
         statusCode: 200,
       });

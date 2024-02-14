@@ -30,11 +30,11 @@
                         </button>
                     </mat-menu>
                     
-                    <h1 class="m-2"><b>{{ deck.name }}</b></h1>
+                    <h1 class="m-2"><b data-testid="deck-card-title">{{ deck.name }}</b></h1>
                 </div>
                 <div class="d-flex flex-row">
-                    <h1 matTooltip="The amount of cards which have already been learned and need to be repeated today" matTooltipPosition="above" class="m-2" style="color: #536DFE">{{ deck.oldCardCount }}</h1>
-                    <h1 matTooltip="The amount of new cards to learn which are determined by the learning rate of the deck" matTooltipPosition="above" class="m-2" class="m-2" style="color: #4CAF50">{{ deck.newCardCount }}</h1>
+                    <h1 matTooltip="The amount of cards which have already been learned and need to be repeated today" matTooltipPosition="above" class="m-2" style="color: #536DFE" data-testid="deck-card-old-card-count">{{ deck.oldCardCount }}</h1>
+                    <h1 matTooltip="The amount of new cards to learn which are determined by the learning rate of the deck" matTooltipPosition="above" class="m-2" class="m-2" style="color: #4CAF50" data-testid="deck-card-new-card-count">{{ deck.newCardCount }}</h1>
                 </div>
             </div>
         </div>

@@ -51,19 +51,45 @@ describe('Content', () => {
   });
 
   it('should display title of decks', () => {
-    cy.get(
-      '[data-testid="deck-overview-cards"] [data-testid="deck-card-title"]',
-    ).should('have.text', 'Test-Deck-1Test-Deck-2Test-Deck-3');
+    cy.get('[data-testid="deck-card-title"]')
+      .eq(0)
+      .should('have.text', 'Test-Deck-1');
+
+    cy.get('[data-testid="deck-card-title"]')
+      .eq(1)
+      .should('have.text', 'Test-Deck-2');
+
+    cy.get('[data-testid="deck-card-title"]')
+      .eq(2)
+      .should('have.text', 'Test-Deck-3');
   });
 
-  it('should display old- and new-card-count for the decks', () => {
-    cy.get(
-      '[data-testid="deck-overview-cards"] [data-testid="deck-card-old-card-count"]',
-    ).should('have.text', '025');
+  it('should display old-card-count of decks', () => {
+    cy.get('[data-testid="deck-card-old-card-count"]')
+      .eq(0)
+      .should('have.text', '0');
 
-    cy.get(
-      '[data-testid="deck-overview-cards"] [data-testid="deck-card-new-card-count"]',
-    ).should('have.text', '220');
+    cy.get('[data-testid="deck-card-old-card-count"]')
+      .eq(1)
+      .should('have.text', '2');
+
+    cy.get('[data-testid="deck-card-old-card-count"]')
+      .eq(2)
+      .should('have.text', '5');
+  });
+
+  it('should display new-card-count of decks', () => {
+    cy.get('[data-testid="deck-card-new-card-count"]')
+      .eq(0)
+      .should('have.text', '2');
+
+    cy.get('[data-testid="deck-card-new-card-count"]')
+      .eq(1)
+      .should('have.text', '2');
+
+    cy.get('[data-testid="deck-card-new-card-count"]')
+      .eq(2)
+      .should('have.text', '0');
   });
 
   it('should display the import button', () => {

@@ -10,22 +10,22 @@
     </div>
 
     <div *ngIf="!isCardFrontVisible" class="h-25 w-100 button-grid p-3">
-        <button class="button btn-easy btn" (click)="onEasyClick()">
+        <button class="button btn-easy btn" (click)="onEasyClick()" data-testid="learn-easy-button">
             <h1><b>Easy</b></h1>
         </button>
-        <button class="button btn-good btn" (click)="onGoodClick()">
+        <button class="button btn-good btn" (click)="onGoodClick()" data-testid="learn-good-button">
             <h1><b>Good</b></h1>
         </button>
-        <button class="button btn-hard btn" (click)="onHardClick()">
+        <button class="button btn-hard btn" (click)="onHardClick()" data-testid="learn-hard-button">
             <h1><b>Hard</b></h1>
         </button>
-        <button class="button btn-repeat btn" (click)="onRepeatClick()">
+        <button class="button btn-repeat btn" (click)="onRepeatClick()" data-testid="learn-repeat-button">
             <h1><b>Repeat</b></h1>
         </button>
     </div>
 
     <div *ngIf="isCardFrontVisible" class="h-25 w-100 d-flex align-items-center justify-content-center">
-        <button class="btn btn-next" (click)="onCheckClick()">
+        <button class="btn btn-next" (click)="onCheckClick()" data-testid="learn-check-button">
             <h1><b>Check</b></h1>
         </button>
     </div>

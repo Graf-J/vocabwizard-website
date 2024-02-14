@@ -1,19 +1,19 @@
 <app-flip-card>
     <flip-card-front>
-        <h1 style="font-size: xx-large;">{{ frontCardData?.word }}</h1>
+        <h1 style="font-size: xx-large;" data-testid="vocab-card-word">{{ frontCardData?.word }}</h1>
     </flip-card-front>
     <flip-card-back>
         <div class="back-card-head">
-            <h1 style="font-size: xx-large;">{{ backCardData?.translation }}</h1>
-            <button *ngIf="backCardData?.audioLink" mat-fab extended color="primary" class="mb-3" (click)="playAudio()">
+            <h1 style="font-size: xx-large;" data-testid="vocab-card-translation">{{ backCardData?.translation }}</h1>
+            <button *ngIf="backCardData?.audioLink" mat-fab extended color="primary" class="mb-3" (click)="playAudio()" data-testid="vocab-card-audio-button">
                 <mat-icon>play_arrow</mat-icon>
                 Audio
             </button>
-            <h1>{{ backCardData?.phonetic }}</h1>
+            <h1 data-testid="vocab-card-phonetic">{{ backCardData?.phonetic }}</h1>
         </div>
 
         <mat-accordion>
-            <mat-expansion-panel *ngIf="backCardData?.definitions!.length > 0" class="m-1">
+            <mat-expansion-panel *ngIf="backCardData?.definitions!.length > 0" class="m-1" data-testid="vocab-card-definitions-dropdown">
                 <mat-expansion-panel-header>
                     <mat-panel-title>Definitions</mat-panel-title>
                 </mat-expansion-panel-header>
@@ -22,7 +22,7 @@
                 </div>
             </mat-expansion-panel>
             
-            <mat-expansion-panel *ngIf="backCardData?.examples!.length > 0" class="m-1">
+            <mat-expansion-panel *ngIf="backCardData?.examples!.length > 0" class="m-1" data-testid="vocab-card-examples-dropdown">
                 <mat-expansion-panel-header>
                     <mat-panel-title>Examples</mat-panel-title>
                 </mat-expansion-panel-header>
@@ -31,7 +31,7 @@
                 </div>
             </mat-expansion-panel>
             
-            <mat-expansion-panel *ngIf="backCardData?.synonyms!.length > 0" class="m-1">
+            <mat-expansion-panel *ngIf="backCardData?.synonyms!.length > 0" class="m-1" data-testid="vocab-card-synonyms-dropdown">
                 <mat-expansion-panel-header>
                     <mat-panel-title>Synonyms</mat-panel-title>
                 </mat-expansion-panel-header>
@@ -40,7 +40,7 @@
                 </div>
             </mat-expansion-panel>
 
-            <mat-expansion-panel *ngIf="backCardData?.antonyms!.length > 0" class="m-1">
+            <mat-expansion-panel *ngIf="backCardData?.antonyms!.length > 0" class="m-1" data-testid="vocab-card-antonyms-dropdown">
                 <mat-expansion-panel-header>
                     <mat-panel-title>Antonyms</mat-panel-title>
                 </mat-expansion-panel-header>

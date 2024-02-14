@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-describe('Header', () => {
+describe('Content', () => {
   beforeEach(() => {
     cy.intercept(
       'GET',

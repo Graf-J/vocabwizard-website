@@ -157,11 +157,11 @@ Die letzte Option <b>Delete Deck</b> bietet die Möglichkeit das Deck zusammen m
 ## Technische Details
 ### Architektur
 Die Applikation verwendet wie gefordert Angular für das Frontend und NestJS für das Backend. Außerdem wird LibreTranslate als externer Service für die Übersetzung der Wörter verwendet. Als Datenbank verwerndet die Applikation MongoDB. Um Definitionen, Beispiele, Audio etc. für ein Wort zu erhalten wird eine externe API names Dictionary API verwendet, welche über diese URL erreichbar ist: https://dictionaryapi.dev<br>
-<img width="700" src="./readme/architecture.png"><br>
+<img width="700" src="./readme/structure.png"><br>
 
 ### Datenbank Struktur
 Die Datenbank besteht aus 3 Schemas. Ein User kann mehrere Decks besitzen. Die Felder lastTimeLearned und numCardsLearned werden im Hintergrund dafür verwendet um zu bestimmen wie viele Karten der Nutzer am aktuellen Tag noch zu lernen hat. Ein Deck kann mehrere Karten beinhalten. Über die stage wird das expires Datum berechnet, welches bestimmt wann dem Nutzer die Karte wieder zu Lernen vorgeschlagen wird. Ist expires NULL bedeutet das, dass es sich um eine neue Karte handelt. So wird im Hintergrund über neue oder zu wiederholende Karte entschieden.<br>
-<img width="700" src="./readme/er-diagram.png"><br>
+<img width="700" src="./readme/erd.png"><br>
 
 ### Lern-Algorithmus
 Wie bereits erwähnt arbeitet das System im Hintergrund mit Stages von 0 bis 8. Aus dieser Zahl berechnet das System über die simple Formel $2^{stage}$ die Anzahl der Tage, welche zum heutigen Tag dazuaddiert werden und somit das expire Datum ergeben. Wenn der Nutzer ein Wort also gar nicht gut kann wird er in $2^0 = 1$ Tagen erneut nach dem Wort gefragt. Beherrscht der Nutzer ein Wort extrem gut wird er in $2^8 = 256$ Tagen erneut nach dem Wort gefragt. Die Tageszeit wird hierbei immer auf Mitternacht gerundet. Die Stage wird abhängig von der Stage in dem sich das Wort aktuell befindet und auf welchen Knopf der Nutzer drückt berechnet.<br>

@@ -38,6 +38,14 @@ describe('AuthService', () => {
     });
   });
 
+  describe('isTokenExpired', () => {
+    it('should return true for an expired token', () => {
+      const expiredToken =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxNWViNWY3M2IyODczZTY4MWE3ZTAiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTcwNzQzNDY2MSwiZXhwIjoxNzA3NDM0NjYyfQ.EcxwkOQurBvudOYeWRGbLCWuVNWyWIGCrpO0rgaWOBs';
+      expect(service.isTokenExpired(expiredToken)).toBeTrue();
+    });
+  });
+
   describe('getUserRole', () => {
     it('should return null if token is not set', () => {
       spyOn(localStorage, 'getItem').and.returnValue(null);

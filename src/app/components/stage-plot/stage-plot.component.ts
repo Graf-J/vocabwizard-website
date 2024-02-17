@@ -23,9 +23,9 @@ export class StagePlotComponent implements OnInit {
     '#26c962',
   ];
   private readonly labels: string[] = [
-    'Not Learned',
     'Very Bad',
     'Bad',
+    'Poor',
     'Fair',
     'Mediocre',
     'Okay',
